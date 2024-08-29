@@ -12,3 +12,19 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Place {
+  id       Int   @id @default(autoincrement())
+  name     String
+  description String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  category Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model Category {
+  id       Int   @id @default(autoincrement())
+  name     String
+  places Place[]
+}

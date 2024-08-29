@@ -19,12 +19,12 @@ model Place {
   description String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  category Category @relation(fields: [categoryId], references: [id])
-  categoryId Int
+  category Category @relation(fields: [categoryName], references: [name])
+  categoryName String
 }
 
 model Category {
   id       Int   @id @default(autoincrement())
-  name     String
+  name     String @unique
   places Place[]
 }

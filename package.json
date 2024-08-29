@@ -2,7 +2,7 @@
   "name": "tourism",
   "version": "1.0.0",
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts"
   },
   "scripts": {
     "dev": "bun run --hot src/index.ts"

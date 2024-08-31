@@ -8,4 +8,4 @@ const router = new Hono();
 // Routes places index
 router.get("/", (c) => getAllPlaces(c));
 
-export const Router = router;
+export const Routes = router;

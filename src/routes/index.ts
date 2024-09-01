@@ -6,6 +6,8 @@ import {
   deleteLocationById,
 } from "../controllers/LocationController";
 
+import { createCategory } from "../controllers/CategoryController";
+
 // Initialize router
 const router = new Hono();
 
@@ -20,4 +22,6 @@ router.delete("/locations/:id", deleteLocationById);
 // Routes to update single Location
 // router.patch("/locations/:id", updateLocationById);
 
+// Routes to post a new category
+router.post("/category", createCategory);
 export const Routes = router;

@@ -1,6 +1,6 @@
 // Import Context for handling HTTP response and requests
 import { Context } from "hono";
-// import { zValidator } from "@hono/zod-validator";
+import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
 
 import prisma from "../../prisma/client/index";
@@ -9,7 +9,7 @@ import prisma from "../../prisma/client/index";
 const locationSchema = z.object({
   name: z.string(),
   description: z.string(),
-  categoryId: z.number().int(),
+  categoryId: z.string(),
 });
 
 // GET all locations
@@ -77,9 +77,9 @@ export const deleteLocationById = async (c: Context) => {
 // POST a new place
 
 // export const createPlace = [
-//   zValidator("json", placeSchema),
+//   zValidator("json", locationSchema),
 //   async (c: Context) => {
-//     const body = c.req.valid("json");
+//     const body = await c.req.valid("json");
 //     try {
 //       const addPlace = await prisma.place.create({
 //         data: {

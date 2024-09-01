@@ -6,64 +6,66 @@ import { z } from "zod";
 import prisma from "../../prisma/client/index";
 
 // Zod Schema
-const placeSchema = z.object({
+const locationSchema = z.object({
   name: z.string(),
   description: z.string(),
   categoryId: z.number().int(),
 });
 
-// GET all places
-export const getAllPlaces = async (c: Context) => {
+// GET all locations
+export const getAllLocations = async (c: Context) => {
   try {
-    const places = await prisma.place.findMany({ orderBy: { id: "desc" } });
+    const locations = await prisma.location.findMany({
+      orderBy: { id: "desc" },
+    });
 
     return c.json(
       {
         success: true,
-        messages: "List Taiwan Tourism Places!",
-        data: places,
+        messages: "List Taiwan Tourism Locations!",
+        data: locations,
       },
       200
     );
   } catch (error) {
-    console.error(`Error getting places: ${error}`);
+    console.error(`Error getting locations: ${error}`);
   }
 };
 
-// GET place by id
-export const getPlaceById = async (c: Context) => {
+// GET location by id
+export const getLocationById = async (c: Context) => {
   try {
     const id = Number(c.req.param("id"));
-    if (!id) return c.json({ success: false, messages: "could not found ID" });
+    if (!id) return c.json({ success: false, messages: `could not found ID` });
 
-    const place = await prisma.place.findUnique({ where: { id } });
+    const location = await prisma.location.findUnique({ where: { id } });
 
     return c.json(
       {
         success: true,
-        messages: "Here is your tourism place you are looking for",
-        data: place,
+        messages: "Here is your tourism location you are looking for",
+        data: location,
       },
       200
     );
   } catch (error) {
-    console.error(`Error getting places: ${error}`);
+    console.error(`Error getting locations: ${error}`);
   }
 };
 
-// DELETE place by id
-export const deletePlaceById = async (c: Context) => {
+// DELETE location by id
+export const deleteLocationById = async (c: Context) => {
   try {
     const id = Number(c.req.param("id"));
     if (!id) return c.json({ success: false, messages: "could not found ID" });
 
-    const deletedPlace = await prisma.place.delete({ where: { id } });
+    const deletedLocation = await prisma.location.delete({ where: { id } });
 
     return c.json(
       {
         success: true,
         messages: `Location with ID ${id} has been deleted`,
-        data: deletedPlace,
+        data: deletedLocation,
       },
       200
     );

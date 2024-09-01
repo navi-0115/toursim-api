@@ -57,13 +57,13 @@ export const deletePlaceById = async (c: Context) => {
     const id = Number(c.req.param("id"));
     if (!id) return c.json({ success: false, messages: "could not found ID" });
 
-    const deletePlace = await prisma.place.delete({ where: { id } });
+    const deletedPlace = await prisma.place.delete({ where: { id } });
 
     return c.json(
       {
         success: true,
-        messages: "hear is your place",
-        data: place,
+        messages: `Location with ID ${id} has been deleted`,
+        data: deletedPlace,
       },
       200
     );

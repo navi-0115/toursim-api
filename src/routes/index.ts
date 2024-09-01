@@ -2,10 +2,8 @@ import { Hono } from "hono";
 // Import GET all places controller
 import {
   getAllLocations,
-  createPlace,
   getLocationById,
   deleteLocationById,
-  updateLocationById,
 } from "../controllers/LocationController";
 
 // Initialize router
@@ -16,10 +14,10 @@ router.get("/locations", getAllLocations);
 // Routes to get place by id
 router.get("/locations/:id", getLocationById);
 // Routes to create single Location
-router.post("/locations", ...createLocation);
+// router.post("/locations", ...createLocation);
 // Routes to delete single Location
 router.delete("/locations/:id", deleteLocationById);
 // Routes to update single Location
-router.patch("/locations/:id", updateLocationById);
+// router.patch("/locations/:id", updateLocationById);
 
 export const Routes = router;

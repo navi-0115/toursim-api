@@ -1,6 +1,6 @@
 // Import Context for handling HTTP response and requests
 import { Context } from "hono";
-import { zValidator } from "@hono/zod-validator";
+// import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
 
 import prisma from "../../prisma/client/index";
@@ -76,36 +76,36 @@ export const deleteLocationById = async (c: Context) => {
 
 // POST a new place
 
-export const createPlace = [
-  zValidator("json", placeSchema),
-  async (c: Context) => {
-    const body = c.req.valid("json");
-    try {
-      const addPlace = await prisma.place.create({
-        data: {
-          name: body.name,
-          description: body.description,
-          categoryId: body.categoryId,
-        },
-      });
+// export const createPlace = [
+//   zValidator("json", placeSchema),
+//   async (c: Context) => {
+//     const body = c.req.valid("json");
+//     try {
+//       const addPlace = await prisma.place.create({
+//         data: {
+//           name: body.name,
+//           description: body.description,
+//           categoryId: body.categoryId,
+//         },
+//       });
 
-      return c.json(
-        {
-          success: true,
-          messages: "Created New Taiwan Tourism Place!",
-          data: addPlace,
-        },
-        201
-      );
-    } catch (error) {
-      console.error(`Error to create place: ${error}`);
-      return c.json(
-        { sucess: false, message: "error creating new place!" },
-        500
-      );
-    }
-  },
-];
+//       return c.json(
+//         {
+//           success: true,
+//           messages: "Created New Taiwan Tourism Place!",
+//           data: addPlace,
+//         },
+//         201
+//       );
+//     } catch (error) {
+//       console.error(`Error to create place: ${error}`);
+//       return c.json(
+//         { sucess: false, message: "error creating new place!" },
+//         500
+//       );
+//     }
+//   },
+// ];
 
 // export async function createPlace(c: Context) {
 //   try {

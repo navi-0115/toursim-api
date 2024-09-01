@@ -1,25 +1,25 @@
 import { Hono } from "hono";
 // Import GET all places controller
 import {
-  getAllPlaces,
+  getAllLocations,
   createPlace,
-  getPlaceById,
-  deletePlaceById,
-  updatePlaceById,
-} from "../controllers/PlaceController";
+  getLocationById,
+  deleteLocationById,
+  updateLocationById,
+} from "../controllers/LocationController";
 
 // Initialize router
 const router = new Hono();
 
-// Routes to get all places
-router.get("/places", getAllPlaces);
+// Routes to get all locations
+router.get("/locations", getAllLocations);
 // Routes to get place by id
-router.get("/places/:id", getPlaceById);
-// Routes to create single place
-router.post("/places", ...createPlace);
-// Routes to delete single place
-router.delete("/places/:id", deletePlaceById);
-// Routes to update single place
-router.patch("/places/:id", updatePlaceById);
+router.get("/locations/:id", getLocationById);
+// Routes to create single Location
+router.post("/locations", ...createLocation);
+// Routes to delete single Location
+router.delete("/locations/:id", deleteLocationById);
+// Routes to update single Location
+router.patch("/locations/:id", updateLocationById);
 
 export const Routes = router;

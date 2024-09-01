@@ -6,7 +6,7 @@ async function main() {
     update: {},
     create: {
       name: "Landmark",
-      places: {
+      locations: {
         create: [
           {
             name: "Taipei 101",
@@ -27,7 +27,7 @@ async function main() {
     update: {},
     create: {
       name: "Nature",
-      places: {
+      locations: {
         create: [
           {
             name: "Taroko Gorge",

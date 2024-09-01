@@ -2,9 +2,8 @@ import { Hono } from "hono";
 // Import routes
 import { Routes } from "./routes/index";
 // Initialization of Hono app using route /api
-const app = new Hono().basePath("/api");
+const app = new Hono();
 
-// Places routes
-app.route("/places", Routes);
+app.route("/api", Routes);
 
 export default app;

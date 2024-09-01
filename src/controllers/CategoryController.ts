@@ -42,7 +42,7 @@ export const createCategory = async (c: Context) => {
 };
 
 // GET all category
-export const getAllCategory = async (c: Context) => {
+export const getAllCategories = async (c: Context) => {
   try {
     const category = await prisma.category.findMany({
       orderBy: { id: "desc" },
@@ -83,7 +83,7 @@ export const getCategoryById = async (c: Context) => {
 };
 
 // DELETE category by id
-export const deletecategoryById = async (c: Context) => {
+export const deleteCategoryById = async (c: Context) => {
   try {
     const id = Number(c.req.param("id"));
     if (!id) return c.json({ success: false, messages: "could not found ID" });

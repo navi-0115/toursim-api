@@ -33,7 +33,7 @@ router.delete("/locations/:id", deleteLocationById);
 router.post("/category", createCategory);
 router.get("/categories", getAllCategories);
 // Routes to get category by id
-router.get("/Category/:id", getCategoryById);
+router.get("/categories/:id", getCategoryById);
 // Routes to delete single category
-router.delete("/locations/:id", deleteCategoryById);
+router.delete("/categories/:id", deleteCategoryById);
 export const Routes = router;

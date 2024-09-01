@@ -1,16 +1,25 @@
 services:
-  backend:
-    image: tourism-location-backend
+  app:
     build:
       context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://${DB_USER}:${DB_PASS}@localhost:${DB_PORT}/${DB_NAME}?schema=public"
     depends_on:
-      - database
-  database:
-    image: postgres:alpine
+      - db
+
+  db:
+    image: postgres:latest
     ports:
       - "5432:5432"
-    env_file: # Change into this
-      - path: .env
-        required: true
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

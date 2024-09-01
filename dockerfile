@@ -1,15 +1,20 @@
-# Use the official Bun image with Debian Linux
-# Oven is the company name, the creator of Bun
-FROM oven/bun:debian
+# Use the Bun image as the base image
+FROM oven/bun:alpine
 
-# Create and change to the app directory
-WORKDIR /usr/src/app
+# Set the working directory in the container
+WORKDIR usr/src/app
 
-# Copy app files
-COPY . .
+# Copy the package manifest and lock file
+COPY package.json ./
 
-# Install app dependencies
+# Install dependencies
 RUN bun install
 
+# Copy the rest of the application code
+COPY . .
+
+# Expose the application port
+EXPOSE 3000
+
 # Run the application
-CMD ["bun", "start"]
+CMD ["bun", "run", "start"]
